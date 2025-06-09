@@ -1,0 +1,87 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "NLI AI Integration API",
+      "version": "1.10",
+      "description": "Integrates NLI OpenLibrary APIs with Google Gemini AI"
+    },
+    "servers": [
+      { "url": "http://localhost:8000" }
+    ],
+    "paths": {
+      "/api/v1/search": {
+        "get": {
+          "summary": "Search NLI OpenLibrary",
+          "parameters": [
+            {"name": "q", "in": "query", "required": true, "schema": {"type": "string"}, "description": "Search query string: field,operator,value"},
+            {"name": "format", "in": "query", "schema": {"type": "string", "enum":["json","xml"]}, "description": "Response format"},
+            {"name": "count_only", "in": "query", "schema": {"type": "boolean"}, "description": "Return only total_results"},
+            {"name": "limit", "in": "query", "schema": {"type": "integer", "minimum": 1, "maximum": 500}, "description": "Max records per page"},
+            {"name": "offset", "in": "query", "schema": {"type": "integer", "minimum": 0}, "description": "Pagination offset"},
+            {"name": "materialType", "in": "query", "schema": {"type": "string"}, "description": "Filter by material type"},
+            {"name": "availabilityType", "in": "query", "schema": {"type": "string"}, "description": "Filter by availability"},
+            {"name": "sortField", "in": "query", "schema": {"type": "string"}, "description": "Sort field"},
+            {"name": "sortOrder", "in": "query", "schema": {"type": "string", "enum":["asc","desc"]}, "description": "Sort order"},
+            {"name": "facet.field", "in": "query", "schema": {"type": "array", "items": {"type": "string"}}, "description": "Facet field"},
+            {"name": "facet.limit", "in": "query", "schema": {"type": "integer"}, "description": "Facet limit"},
+            {"name": "facet.offset", "in": "query", "schema": {"type": "integer"}, "description": "Facet offset"},
+            {"name": "facet.sort", "in": "query", "schema": {"type": "string"}, "description": "Facet sort"},
+            {"name": "fields", "in": "query", "schema": {"type": "array", "items": {"type": "string"}}, "description": "Fields to include"},
+            {"name": "lang", "in": "query", "schema": {"type": "string"}, "description": "Language filter"},
+            {"name": "creator", "in": "query", "schema": {"type": "string"}},
+            {"name": "subject", "in": "query", "schema": {"type": "string"}},
+            {"name": "publisher", "in": "query", "schema": {"type": "string"}},
+            {"name": "publicationYearFrom", "in": "query", "schema": {"type": "integer"}},
+            {"name": "publicationYearTo", "in": "query", "schema": {"type": "integer"}},
+            {"name": "collection", "in": "query", "schema": {"type": "string"}},
+            {"name": "contributor", "in": "query", "schema": {"type": "string"}},
+            {"name": "isbn", "in": "query", "schema": {"type": "string"}},
+            {"name": "issn", "in": "query", "schema": {"type": "string"}},
+            {"name": "dateFrom", "in": "query", "schema": {"type": "string", "format": "date"}},
+            {"name": "dateTo", "in": "query", "schema": {"type": "string", "format": "date"}}
+          ],
+          "responses": {"200": {"description": "Search results","content": {"application/json": {"schema": {"type": "object","properties": {"total_results": {"type": "integer"},"items": {"type": "array","items": {"type": "object"}}}}}}}}
+        }
+      },
+      "/api/v1/image/{identifier}": {
+        "get": {
+          "summary": "Get IIIF image",
+          "parameters": [
+            {"name": "identifier", "in": "path", "required": true, "schema": {"type": "string"}},
+            {"name": "region", "in": "query", "schema": {"type": "string"}, "description": "Region"},
+            {"name": "size", "in": "query", "schema": {"type": "string"}, "description": "Size"},
+            {"name": "rotation", "in": "query", "schema": {"type": "number"}, "description": "Rotation degrees"},
+            {"name": "quality", "in": "query", "schema": {"type": "string"}, "description": "Quality"},
+            {"name": "format", "in": "query", "schema": {"type": "string", "enum":["jpg","png","jp2"]}, "description": "Format"}
+          ],
+          "responses": {"200": {"description": "Binary image data"}}
+        }
+      },
+      "/api/v1/manifest/{recordId}": {
+        "get": {
+          "summary": "Get IIIF manifest",
+          "parameters": [{"name":"recordId","in":"path","required":true,"schema":{"type":"string"}}],
+          "responses": {"200": {"description": "IIIF manifest","content": {"application/json": {}}}}
+        }
+      },
+      "/api/v1/stream/{itemId}": {
+        "get": {
+          "summary": "Get streaming URLs",
+          "parameters": [
+            {"name":"itemId","in":"path","required":true,"schema":{"type":"string"}},
+            {"name":"format","in":"query","schema":{"type":"string","enum":["mp4","hls","audio","all"]}}
+          ],
+          "responses": {"200": {"description": "Streaming URLs JSON","content": {"application/json": {}}}}
+        }
+      },
+      "/api/v1/query-ai": {
+        "post": {
+          "summary": "Summarize or answer question",
+          "requestBody": {"required": true,"content": {"application/json": {"schema": {"type":"object","properties": {"prompt":{"type":"string"},"context":{"type":"object"}}}}}},
+          "responses": {"200": {"description": "AI response","content": {"application/json": {"schema": {"type":"object","properties": {"response_text":{"type":"string"}}}}}},
+          "responses": {"400": {"description": "Missing context"}}
+        }
+      }
+    }
+  }
+}
