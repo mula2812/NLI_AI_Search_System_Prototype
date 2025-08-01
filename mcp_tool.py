@@ -215,7 +215,7 @@ async def query_ai(request: AIRequest = Body(...)):
     if not m:
         # No JSON start token
         return {
-            "response_text": "מצטערים, לא נמצאה תשובה בתבנית JSON בתגובה של ה‑AI.",
+            "response_text": "מצטערים, לא נמצאנו תשובה תקינה מהספרייה הלאומית.",
             "record_ids": []
         }
 
