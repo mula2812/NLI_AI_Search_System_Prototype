@@ -168,3 +168,5 @@ Contributions are welcome! If you have suggestions for improvements, bug fixes, 
 This project is open-source and available under the MIT License.
 Users must retain the copyright notice and license text in all copies or substantial portions of the software.
 
+## Disclaimer
+This project is not officially affiliated with the National Library of Israel, but it uses their free public OpenLibrary APIs.
