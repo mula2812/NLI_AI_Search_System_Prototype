@@ -10,7 +10,7 @@
 
 ## Unveiling an AI-Powered Treasure Hunt
 
-The **National Library of Israel (NLI)** holds an extensive digital repository, encompassing millions of cultural and historical assets—from ancient manuscripts to contemporary media. While the NLI’s OpenLibrary APIs provide access to this vast collection, their reliance on structured, metadata-focused queries presents a significant hurdle. This complexity often alienates users who lack expertise in library cataloging standards or API syntax, limiting the potential of this valuable resource.
+The **National Library of Israel (NLI)** holds an extensive digital repository, encompassing millions of cultural and historical assets-from ancient manuscripts to contemporary media. While the NLI’s OpenLibrary APIs provide access to this vast collection, their reliance on structured, metadata-focused queries presents a significant hurdle. This complexity often alienates users who lack expertise in library cataloging standards or API syntax, limiting the potential of this valuable resource.
 
 The **National Library AI Search System** transforms this experience by integrating **Google's Gemini AI** to enable natural language search capabilities. Instead of grappling with rigid query formats, users can now explore NLI collections using intuitive phrases such as "medieval Hebrew manuscripts" or "photographs of old Tel Aviv." This system leverages advanced Natural Language Processing (NLP) to interpret queries, construct precise API calls, and deliver relevant results—making the NLI's treasures accessible to a broader audience.
 
@@ -44,7 +44,7 @@ sequenceDiagram
 
 Following a deep exploration of Model Context Protocols (MCPs) and understanding their importance, especially in responding to complex APIs, I built this prototype to explain and demonstrate their use and essence. The MCP is essentially the bridge and the messenger: it does not receive the natural language query directly, but rather receives a specific command from the AI model to execute a certain function. After receiving the command, the MCP is the one that sends the queries, receives the information from the API, and passes all the results to the AI which presents the most correct and relevant answer to the user.
 
-I built this prototype for the mentioned needs using the real core of the MCP – **FastAPI** capabilities. These capabilities are powered here by **Google's Gemini AI**. This project serves as an important test for understanding the processes and capabilities required from such a design, and its purpose was to provide this understanding to those exposed to the world of AI development for the first time. Its purpose was also to serve as an intermediate step to create a suitable and worthy MCP project using the insights that emerged.
+I built this prototype for the mentioned needs using the real core of the MCP - **FastAPI** capabilities. These capabilities are powered here by **Google's Gemini AI**. This project serves as an important test for understanding the processes and capabilities required from such a design, and its purpose was to provide this understanding to those exposed to the world of AI development for the first time. Its purpose was also to serve as an intermediate step to create a suitable and worthy MCP project using the insights that emerged.
 for more explantion about FASTAPI - [read](https://www.geeksforgeeks.org/python/fastapi-introduction/)
 
 ## Features
@@ -98,11 +98,9 @@ This project requires two API keys:
 Clone the Repository:
 
 ```bash
-git clone <repository_url>
-cd <repository_name>
+git clone https://github.com/mula2812/NLI_AI_Search_System_Prototype.git
+cd https://github.com/mula2812/NLI_AI_Search_System_Prototype.git
 ```
-
-(Replace <repository_url> with the actual URL of your repository and <repository_name> with the folder name.)
 
 Configure the API Keys:
 
