@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: nli-ai-search
     environment:
-      - GEMINI_API_KEY=your_key # replace with your actual Gemini API key
+      - GEMINI_API_KEY=AIzaSyAqEOHk_vAOZxka3wiXRYc942sEeZ9asYw # replace with your actual Gemini API key
       - NLI_API_KEY=DVQyidFLOAjp12ib92pNJPmflmB5IessOq1CJQDK # this is the default visitor key, its recomended to replace it with your own but not necessary
     ports:
       - "8000:8000"
